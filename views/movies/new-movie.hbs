@@ -1,0 +1,22 @@
+<h2>Insert a movie on the list.</h2>
+
+<form action='/movies/create' method='POST'>
+  <label for=''>Title:</label>
+  <input type='text' name='title' />
+
+  <label for=''>Genre:</label>
+  <input type='text' name='genre' />
+  <hr />
+  <label for=''>Plot:</label>
+  <textarea name='plot' id='' cols='30' rows='1'></textarea>
+
+  <label for=''>Cast</label>
+  <select name='cast'>
+    <option value=''>Choose an celebrity</option>
+    {{#each celebrity}}
+      <option value={{id}}>{{name}}</option>
+    {{/each}}
+  </select>
+
+  <button type='submit'>Create</button>
+</form>
