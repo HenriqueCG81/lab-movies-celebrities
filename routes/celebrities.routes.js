@@ -20,6 +20,20 @@ router.post('/celebrities/delete/:id', async (req, res) => {
   await Celebrity.findByIdAndDelete(req.params.id);
   res.redirect('/celebrities');
 });
+router.post('/celebrities/edit', async (req, res) => {
+  const { name, occupation, catchPhrase } = req.body;
+  await Celebrity.findByIdAndUpdate(req.query.id, {
+    name,
+    occupation,
+    catchPhrase
+  });
+  res.redirect(`/celebrities/${req.query.id}`);
+});
+router.get('/celebrities/:id/edit', async (req, res) => {
+  const celebrity = await Celebrity.findById(req.params.id);
+
+  res.render('celebrities/celebrity-edit.hbs', { celebrity });
+});
 
 router.get('/celebrities/:id', async (req, res) => {
   const celebrity = await Celebrity.findById(req.params.id);
